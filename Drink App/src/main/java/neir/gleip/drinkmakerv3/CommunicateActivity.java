@@ -2,18 +2,31 @@ package neir.gleip.drinkmakerv3;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommunicateActivity extends AppCompatActivity {
-
+    private List<Drink> movieList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private MoviesAdapter mAdapter;
     private TextView connectionText;
-
+    String Selected_Drink;
     //private TextView connectionText,messagesView;
   //  private EditText messageBox;
     private Button sendButton;
@@ -68,10 +81,35 @@ public class CommunicateActivity extends AppCompatActivity {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Recycle View stuff
+//        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        mAdapter = new MoviesAdapter(movieList);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//        recyclerView.setLayoutManager(mLayoutManager);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        recyclerView.setAdapter(mAdapter);
+//        prepareMovieData();
+//        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//                Drink drink = movieList.get(position);
+//                Toast.makeText(getApplicationContext(), drink.getName() + " is selected!", Toast.LENGTH_SHORT).show();
+//                Selected_Drink =drink.getName();
+//
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//
+//            }
+//        }));
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Setup the send button click action
         //sendButton.setOnClickListener(v -> viewModel.sendMessage(messageBox.getText().toString()));
-        String hello = "g,o,o,d,b,y,e,";
-        sendButton.setOnClickListener(v -> viewModel.sendMessage(hello));
+               sendButton.setOnClickListener(v -> viewModel.sendMessage(Selected_Drink));
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,9 +123,11 @@ public class CommunicateActivity extends AppCompatActivity {
                 connectionText.setText(R.string.status_connected);
                // messageBox.setEnabled(true);
                 sendButton.setEnabled(true);
+                startRecyclerView();
                 //connectButton.setEnabled(true);
                // connectButton.setText(R.string.disconnect);
                // connectButton.setOnClickListener(v -> viewModel.disconnect());
+
                 break;
 
             case CONNECTING:
@@ -130,4 +170,93 @@ public class CommunicateActivity extends AppCompatActivity {
         // Close the activity
         finish();
     }
+
+//
+
+//
+
+//
+//ALL STUFF FOR RECYCLERVEIW
+//
+    private void startRecyclerView(){
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mAdapter = new MoviesAdapter(movieList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setAdapter(mAdapter);
+        prepareMovieData();
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Drink drink = movieList.get(position);
+                Toast.makeText(getApplicationContext(), drink.getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                Selected_Drink =drink.getName();
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+    }
+
+private void prepareMovieData() {
+
+  Drink drink = new Drink("Water", "None", "0");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Long Island", "Many", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Barbados Sunrise", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink1", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink2", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink3", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink4", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink5", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink6", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink7", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink8", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink9", "Rum", "40");
+    movieList.add(drink);
+    //-
+    drink = new Drink("Drink10", "Rum", "40");
+    movieList.add(drink);
+    //-
+
+
+
+
+
+
+
+
+    mAdapter.notifyDataSetChanged();
+}
+
+
 }

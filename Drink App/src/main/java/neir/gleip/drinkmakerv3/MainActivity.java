@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     // Called when a button in the action bar is pressed
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             text1.setText(device.getName());
             text2.setText(device.getAddress());
             layout.setOnClickListener(view -> openCommunicationsActivity(device.getName(), device.getAddress()));
-
+//connect();
         }
     }
 
