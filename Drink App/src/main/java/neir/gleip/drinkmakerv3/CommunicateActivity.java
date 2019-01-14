@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommunicateActivity extends AppCompatActivity {
-    private List<Drink> movieList = new ArrayList<>();
+    private List<Drink> drinkList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private MoviesAdapter mAdapter;
+    private DrinkAdapter dAdapter;
     private TextView connectionText;
     String Selected_Drink;
     //private TextView connectionText,messagesView;
@@ -66,44 +66,7 @@ public class CommunicateActivity extends AppCompatActivity {
         // Start observing the data sent to us by the ViewModel
         viewModel.getConnectionStatus().observe(this, this::onConnectionStatus);
         viewModel.getDeviceName().observe(this, name -> setTitle(getString(R.string.device_name_format, name)));
-//        viewModel.getMessages().observe(this, message -> {
-//            if (TextUtils.isEmpty(message)) {
-//                message = getString(R.string.no_messages);
-//            }
-            //messagesView.setText(message);
-       // });
-//        viewModel.getMessage().observe(this, message -> {
-//            // Only update the message if the ViewModel is trying to reset it
-//            if (TextUtils.isEmpty(message)) {
-//                messageBox.setText(message);
-//            }
-//        });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //Recycle View stuff
-//        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-//        mAdapter = new MoviesAdapter(movieList);
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-//        recyclerView.setLayoutManager(mLayoutManager);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-//        recyclerView.setAdapter(mAdapter);
-//        prepareMovieData();
-//        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-//            @Override
-//            public void onClick(View view, int position) {
-//                Drink drink = movieList.get(position);
-//                Toast.makeText(getApplicationContext(), drink.getName() + " is selected!", Toast.LENGTH_SHORT).show();
-//                Selected_Drink =drink.getName();
-//
-//            }
-//
-//            @Override
-//            public void onLongClick(View view, int position) {
-//
-//            }
-//        }));
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,17 +143,17 @@ public class CommunicateActivity extends AppCompatActivity {
 //
     private void startRecyclerView(){
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapter = new MoviesAdapter(movieList);
+        dAdapter = new DrinkAdapter(drinkList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(dAdapter);
         prepareMovieData();
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Drink drink = movieList.get(position);
+                Drink drink = drinkList.get(position);
                 Toast.makeText(getApplicationContext(), drink.getName() + " is selected!", Toast.LENGTH_SHORT).show();
                 Selected_Drink =drink.getName();
 
@@ -204,48 +167,43 @@ public class CommunicateActivity extends AppCompatActivity {
     }
 
 private void prepareMovieData() {
+        //to chance drink hit labels go to Drink.java and find and replace all words with drink4
 
-  Drink drink = new Drink("Water", "None", "0");
-    movieList.add(drink);
+  Drink drink = new Drink("Water", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Long Island", "Many", "40");
-    movieList.add(drink);
+     drink = new Drink("Long Island", "All", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Barbados Sunrise", "Rum", "40");
-    movieList.add(drink);
+     drink = new Drink("Barbados Sunrise", "Rum", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Vodka", "Vodka", "80", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink1", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink3", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink2", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink4", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink3", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink5", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink4", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink6", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink5", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink7", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink6", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink8", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink7", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink9", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
-    drink = new Drink("Drink8", "Rum", "40");
-    movieList.add(drink);
-    //-
-    drink = new Drink("Drink9", "Rum", "40");
-    movieList.add(drink);
-    //-
-    drink = new Drink("Drink10", "Rum", "40");
-    movieList.add(drink);
+    drink = new Drink("Drink10", "None", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+    drinkList.add(drink);
     //-
 
 
@@ -255,7 +213,10 @@ private void prepareMovieData() {
 
 
 
-    mAdapter.notifyDataSetChanged();
+
+
+
+    dAdapter.notifyDataSetChanged();
 }
 
 
